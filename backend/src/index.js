@@ -28,7 +28,10 @@ mongoose.connect(DBURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // rest api
 app.use(cors());
-app.get('/', (req, res) => {res.redirect('/blogs')})
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+// app.get('/', (req, res) => {res.redirect('/blogs')})
 app.use('/blogs', blogsRoutes)
 app.use('/users', usersRoutes)
 app.use('/notifications', notificationRoute)
