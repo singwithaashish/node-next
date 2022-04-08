@@ -1,0 +1,18 @@
+.card:hover{
+  border: 1px solid black;
+  box-shadow: black ;
+  transition: all 0.6s ;
+  
+}
+
+.login{
+  background-color: #f1f1f1;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  width: 500px;
+  border-radius: 5px;
+  
+
+
+}
