@@ -5,7 +5,7 @@ import { Container, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import BlogCard from "../../Components/BlogCard";
 
-function index() {
+function Index() {
   const [userr, setUserr] = useState(null);
   const [blogs, setBlogs] = useState(null);
   const apiUrl = useSelector(state => state.all.apiUrl)
@@ -87,4 +87,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

@@ -2,11 +2,12 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Container } from "react-bootstrap";
 
-function blogpost() {
+function Blogpost() {
   const router = useRouter();
   const { title, description, imgUrl, author, time, id } = router.query;
 
-  var date = new Date(time);
+  // var date = new Date(time)
+  // .toISOString().substring(0, 10);
 
   return (
     <Container>
@@ -15,7 +16,7 @@ function blogpost() {
         <div className="d-flex ms-auto">
           <h6 className="text-secondary me-2">{author}</h6>
           <h6 className="text-secondary">
-            {date.toISOString().substring(0, 10)}
+            {/* {date} */}
           </h6>
         </div>
 
@@ -26,4 +27,4 @@ function blogpost() {
   );
 }
 
-export default blogpost;
+export default Blogpost;

@@ -1,6 +1,13 @@
 {
   "/_app": "pages/_app.js",
+  "/api/hello": "pages/api/hello.js",
+  "/blogs/[id]": "pages/blogs/[id].html",
+  "/blogs": "pages/blogs.html",
+  "/": "pages/index.html",
+  "/notifications": "pages/notifications.html",
+  "/profile": "pages/profile.html",
+  "/user": "pages/user.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js"
+  "/404": "pages/404.html"
 }

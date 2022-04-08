@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 
-function index() {
+function Index() {
   const [notifications, setNotifications] = useState([])
   // useEffect(async () => {
   //   const token = localStorage.getItem('token')
@@ -28,9 +28,9 @@ function index() {
   return (
     <Container>
       <h1>Notifications are Coming soon</h1>
-      {notifications && notifications.map(noti => {
+      {notifications && notifications.map((noti, i) => {
         return (
-          <div>
+          <div key={i}>
             <h3>{noti.message}</h3>
           </div>
         )
@@ -39,4 +39,4 @@ function index() {
   )
 }
 
-export default index
+export default Index

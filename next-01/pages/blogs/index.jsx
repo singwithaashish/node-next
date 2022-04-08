@@ -1,9 +1,9 @@
 import React from 'react'
 
-function index() {
+function Index() {
   return (
     <div>blog</div>
   )
 }
 
-export default index
+export default Index
