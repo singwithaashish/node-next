@@ -20,14 +20,14 @@ export default function Home({ creating, setCreating }) {
     SetLoading(true);
     const token = localStorage.getItem("token");
     // console.log(token);
-    // const res = await fetch(`${apiUrl}/blogs`, {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: token,
-    //   },
-    // });
-    const res = await getBlog(apiUrl, token);
+    const res = await fetch(`${apiUrl}/blogs`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+    // const res = await getBlog(apiUrl, token);
     const data = await res.json();
     dispatch(setAllBlogs(data));
     setDatas(data);
