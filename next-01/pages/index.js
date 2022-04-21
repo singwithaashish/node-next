@@ -17,25 +17,31 @@ export default function Home({ creating, setCreating }) {
   const apiUrl = useSelector((state) => state.all.apiUrl);
 
   useEffect(async () => {
-    SetLoading(true);
+    !loading && SetLoading(true);
     const token = localStorage.getItem("token");
-    // console.log(token);
-    const res = await fetch(`${apiUrl}/blogs`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    });
-    // const res = await getBlog(apiUrl, token);
-    const data = await res.json();
-    dispatch(setAllBlogs(data));
-    setDatas(data);
-    // console.log()
+    console.log(token);
+    try {
+      const res = await fetch(`${apiUrl}/blogs`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
+      // const res = await getBlog(apiUrl, token);
+      const data = await res.json();
+      dispatch(setAllBlogs(data));
+      setDatas(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // console.log("som");
     if (token) {
       setUser(jwt.decode(token));
       // console.log(user)
     }
+    // console.log("here");
     SetLoading(false);
   }, []);
 
