@@ -34,9 +34,9 @@ export default function Home({ creating, setCreating }) {
     // console.log()
     if (token) {
       setUser(jwt.decode(token));
-      SetLoading(false);
       // console.log(user)
     }
+    SetLoading(false);
   }, []);
 
   return (
