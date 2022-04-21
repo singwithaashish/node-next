@@ -1,40 +1,44 @@
-import Head from 'next/head'
-import { useEffect, useState } from 'react';
-import CnavBar from '../Components/CnavBar';
-import HomePage from '../Components/HomePage';
-import Authenticate from '../Components/Authenticate';
-import jwt from 'jsonwebtoken';
-import { useDispatch, useSelector } from 'react-redux';
-import { setAllBlogs } from '../state/stateSlice';
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import CnavBar from "../Components/CnavBar";
+import HomePage from "../Components/HomePage";
+import Authenticate from "../Components/Authenticate";
+import jwt from "jsonwebtoken";
+import { useDispatch, useSelector } from "react-redux";
+import { setAllBlogs } from "../state/stateSlice";
+import { Spinner } from "react-bootstrap";
+import getBlog from "../api/api";
 
-
-export default function Home({ creating, setCreating}) {
-  const [user, setUser] = useState(null)
-  const [datas, setDatas] = useState(null)
-  const dispatch = useDispatch()
-  const apiUrl = useSelector(state => state.all.apiUrl)
+export default function Home({ creating, setCreating }) {
+  const [user, setUser] = useState(null);
+  const [datas, setDatas] = useState(null);
+  const [loading, SetLoading] = useState(true);
+  const dispatch = useDispatch();
+  const apiUrl = useSelector((state) => state.all.apiUrl);
 
   useEffect(async () => {
-    const token = localStorage.getItem('token')
-    console.log(token)
-    const res = await fetch(`${apiUrl}/blogs`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization':  token
-    },}
-
-  );
-  const data = await res.json();
-  dispatch(setAllBlogs(data))
-  setDatas(data)
-  // console.log()
-  if(token){
-    setUser(jwt.decode(token))
-    console.log(user)
+    SetLoading(true);
+    const token = localStorage.getItem("token");
+    // console.log(token);
+    // const res = await fetch(`${apiUrl}/blogs`, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: token,
+    //   },
+    // });
+    const res = await getBlog(apiUrl, token);
+    const data = await res.json();
+    dispatch(setAllBlogs(data));
+    setDatas(data);
+    // console.log()
+    if (token) {
+      setUser(jwt.decode(token));
+      SetLoading(false);
+      // console.log(user)
     }
-  }, [])
- 
+  }, []);
+
   return (
     <div>
       <Head>
@@ -43,19 +47,23 @@ export default function Home({ creating, setCreating}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* JUST SIMPLE PROPS DRILLING, NOTHING TO SEE HERE */}
-        {
-          user ?
-          <HomePage datas={datas}/>
-          :
-          <Authenticate/>
-
-        }
+        {/* if loading, show loading, else, if user, show home else show authentication */}
+        {loading ? (
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "100vh" }}
+          >
+            <Spinner animation="border" variant="info" />
+          </div>
+        ) : user ? (
+          <HomePage datas={datas} />
+        ) : (
+          <Authenticate />
+        )}
       </main>
     </div>
-  )
+  );
 }
-
 
 // ! content is dynamic so ssr is not necessary | required
 // export const getStaticProps = async () => {
@@ -80,4 +88,4 @@ export default function Home({ creating, setCreating}) {
 //       datas: data,
 //     },
 //   };
-// }  
+// }

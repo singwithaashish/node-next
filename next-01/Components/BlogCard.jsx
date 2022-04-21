@@ -9,8 +9,8 @@ import { setBlogIdtoUpdate, setShowCreate } from "../state/stateSlice";
 function BlogCard({ title, description, imgUrl, author, time, id }) {
   // console.log(author, jwt.decode(localStorage.getItem('token')).id)
 
-
-  const apiUrl = useSelector(state => state.all.apiUrl)
+  // get the api uri from redux state
+  const apiUrl = useSelector((state) => state.all.apiUrl);
   const redirect = () => {
     Router.push(
       {
@@ -33,7 +33,7 @@ function BlogCard({ title, description, imgUrl, author, time, id }) {
   };
 
   const dispatch = useDispatch();
-  const blogId = useSelector(state => state.all?.blogIdtoUpdate);
+  const blogId = useSelector((state) => state.all?.blogIdtoUpdate);
 
   const updateBlog = () => {
     // const updateBlog = await fetch(`http://localhost:5000/blogs/update`, {
@@ -47,11 +47,10 @@ function BlogCard({ title, description, imgUrl, author, time, id }) {
     dispatch(setBlogIdtoUpdate(id));
     dispatch(setShowCreate(true));
     console.log(blogId);
-
   };
 
   return (
-    <Card
+    /*<Card
       onClick={() => redirect()}
       style={{ minWidth: "18rem", maxHeight: "30rem" }}
       className={`col-12 col-md-3 m-2 ${styles.card}`}
@@ -75,7 +74,7 @@ function BlogCard({ title, description, imgUrl, author, time, id }) {
       </Card.Body>
       <Card.Footer>
         <small className="text-muted">Last updated {time} ago</small>
-        {/* <small className="text-muted">by {author}</small> */}
+        
         {author === jwt.decode(localStorage.getItem("token")).id ? (
           <span className="d-flex">
             <Button
@@ -88,27 +87,32 @@ function BlogCard({ title, description, imgUrl, author, time, id }) {
             >
               Delete
             </Button>
-            <Button variant="outline-info" onClick={(e) => {
+            <Button
+              variant="outline-info"
+              onClick={(e) => {
                 e.stopPropagation();
                 updateBlog();
-              }} >Update</Button>
+              }}
+            >
+              Update
+            </Button>
           </span>
         ) : (
           <></>
         )}
       </Card.Footer>
-    </Card>
-    // <div className={`col-12 col-md-3 m-2 ${styles.card}`}>
-    //   <img src={imgUrl} alt={title} style={{maxWidth: "100%", objectFit: "cover"}}/>
-    //   <div className="card-body">
-    //     <h5 className="title">{title}</h5>
-    //     <p className="desc">{description}</p>
-    //   </div>
-    //   <div className="card-footer">
-    //     <small className="text-muted">Last updated {time} ago</small>
-    //     <small className="text-muted">by {author}</small>
-    //   </div>
-    // </div>
+    </Card>*/
+
+    <div
+      className="d-flex flex-column align-items-center text-center col-12 col-md-3 m-2"
+      style={{ backgroundImage: `url(${imgUrl})` }}
+    >
+      <h2>{title}</h2>
+      <div className="d-flex ms-auto">
+        <h6 className="text-secondary me-2">{author}</h6>
+        <h6 className="text-secondary">{/* {date} */}</h6>
+      </div>
+    </div>
   );
 }
 
