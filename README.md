@@ -1,5 +1,7 @@
 # node-next
 
+visit : https://node-next.vercel.app/
+
 This is a full-stack project of mine. I used Next js, redux, react-bootstrap on the frontend and Node, express, jwt and mongodb on the backend. 
 
 It taught me alot and I now think myself as a capable and wise full stack developer
