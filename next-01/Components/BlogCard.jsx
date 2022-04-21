@@ -50,7 +50,7 @@ function BlogCard({ title, description, imgUrl, author, time, id }) {
   };
 
   return (
-    /*<Card
+    <Card
       onClick={() => redirect()}
       style={{ minWidth: "18rem", maxHeight: "30rem" }}
       className={`col-12 col-md-3 m-2 ${styles.card}`}
@@ -101,18 +101,18 @@ function BlogCard({ title, description, imgUrl, author, time, id }) {
           <></>
         )}
       </Card.Footer>
-    </Card>*/
+    </Card>
 
-    <div
-      className="d-flex flex-column align-items-center text-center col-12 col-md-3 m-2"
-      style={{ backgroundImage: `url(${imgUrl})` }}
-    >
-      <h2>{title}</h2>
-      <div className="d-flex ms-auto">
-        <h6 className="text-secondary me-2">{author}</h6>
-        <h6 className="text-secondary">{/* {date} */}</h6>
-      </div>
-    </div>
+    // <div
+    //   className="d-flex flex-column align-items-center text-center col-12 col-md-3 m-2"
+    //   style={{ backgroundImage: `url(${imgUrl})` }}
+    // >
+    //   <h2>{title}</h2>
+    //   <div className="d-flex ms-auto">
+    //     <h6 className="text-secondary me-2">{author}</h6>
+    //     <h6 className="text-secondary">{/* {date} */}</h6>
+    //   </div>
+    // </div>
   );
 }
 
