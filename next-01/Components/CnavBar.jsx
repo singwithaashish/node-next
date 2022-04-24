@@ -20,7 +20,8 @@ function CnavBar() {
   };
 
   return (
-    <div>
+    <>
+    <div style={{position: "fixed", width: "100vw", zIndex: 15}}>
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="/">journalist</Navbar.Brand>
@@ -56,6 +57,8 @@ function CnavBar() {
         </Container>
       </Navbar>
     </div>
+    <div style={{height: "4rem", width: "100vw"}}></div>
+    </>
   );
 }
 

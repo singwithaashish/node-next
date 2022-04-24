@@ -7,7 +7,7 @@ function HomePage({ datas}) {
   // console.log(datas)
   return (
     <>
-      <Container>
+      <Container >
         <div className="row d-flex justify-content-center">
           {
           datas.length > 0 ?
@@ -18,9 +18,9 @@ function HomePage({ datas}) {
                 title={dat.title}
                 description={dat.description}
                 author={dat.author}
-                imgUrl={dat.image}
-                time={dat.createdAt}
-                id={dat._id}
+                image={dat.image}
+                createdAt={dat.createdAt}
+                _id={dat._id}
               />
             );
           }) : <h1>Unauthorized or no blogs</h1>}

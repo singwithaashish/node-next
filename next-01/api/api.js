@@ -1,4 +1,7 @@
-export default async function getBlog(apiUrl, token) {
+
+
+
+async function getBlog(apiUrl, token) {
   return await fetch(`${apiUrl}/blogs`, {
     method: "GET",
     headers: {
@@ -10,7 +13,7 @@ export default async function getBlog(apiUrl, token) {
 }
 
 
-export async function user(apiUrl, token) {
+async function user(apiUrl, token) {
     return await fetch(`${apiUrl}/users/me`, {
         method: "GET",
         headers: {
@@ -19,3 +22,18 @@ export async function user(apiUrl, token) {
         },
       });
 }
+
+const deleteBlog = async (apiUrl, _id) => {
+  // const apiUrl = useSelector((state) => state.all.apiUrl);
+  return await fetch(`${apiUrl}/blogs/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+      _id: _id,
+    },
+  });
+}; 
+
+
+export { getBlog, user, deleteBlog };
