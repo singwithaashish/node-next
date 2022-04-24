@@ -4,6 +4,7 @@ import { Container, Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentBlog } from "../../state/stateSlice";
 import Router from "next/router";
+import { useTheme } from "next-themes";
 
 function Blogpost() {
   // console.log(prop);
@@ -22,43 +23,10 @@ function Blogpost() {
     Router.push(`/blogs/${_id}`);
   };
 
-  // useSelector((state) =>
-  //   state.all?.allBlogs.find((blog) => blog._id === router.query.id)
-  // );
-
-  // const next3Blogs = useSelector((state) =>
-  //   state.all?.allBlogs
-  //     .filter((blog) => blog._id !== router.query.id)
-  //     .slice(0, 3)
-  // );
-
-  // useSelector(state => state.all?.currentBlog)
-  // console.log(thisBlog)
-  // console.log()
-
-  // const id = "62420a0a09a0e3d4ed3619e7"
-  // router.query;
-
-  // console.log(id)
-
-  // const [thisBlog, setThisBlog] = React.useState(null);
-  // console.log(thisBlog);
-  // var date = new Date(time)
-  // .toISOString().substring(0, 10);
-
-  // useEffect(() => {
-  //   const id = "62420a0a09a0e3d4ed3619e7";
-  //   setThisBlog(
-  //     useSelector((state) =>
-  //       state.all?.allBlogs.find((blog) => blog._id === id)
-  //     )
-  //   );
-
-  //   console.log(thisBlog);
-  // }, []);
+  
 
   return (
-    <Container className="d-flex">
+    <Container className={`d-flex `}>
       <div className="d-flex flex-column align-items-center text-center w-75">
         <h2>{thisBlog.title}</h2>
         <div className="d-flex ms-auto">

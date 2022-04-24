@@ -1,5 +1,7 @@
+import { useTheme } from "next-themes";
 import React from "react";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import style from "../styles/Home.module.css";
 
@@ -10,13 +12,13 @@ const Authenticate = () => {
       className="d-flex justify-content-center align-items-center"
       style={{ height: "100vh" }}
     >
-      {isLogin ? <Login sIL={sIL} /> : <Register />}
+      {isLogin ? <Login sIL={sIL} /> : <Register sIL={sIL}/>}
     </div>
   );
 };
 
 function Login({ sIL }) {
-
+  const {theme} = useTheme();
   const apiUrl = useSelector(state => state.all.apiUrl)
   function change(e) {
     console.log(e.value);
@@ -54,7 +56,7 @@ function Login({ sIL }) {
     }
   };
   return (
-    <form className={style.login} onSubmit={(e) => onSubmit(e)}>
+    <form className={`${style.login} bg-${theme}`} onSubmit={(e) => onSubmit(e)}>
       <div className="row mb-3">
         <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
           Email
@@ -96,9 +98,9 @@ function Login({ sIL }) {
   );
 }
 
-function Register() {
+function Register({sIL}) {
   // const [error, sE] = useState(false);
-
+  const {theme} = useTheme();
   const apiUrl = useSelector(state => state.all.apiUrl)
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -136,7 +138,7 @@ function Register() {
   }
 
   return (
-    <form className={`${style.login}`} onSubmit={onSubmit}>
+    <form className={`${style.login} bg-${theme}`} onSubmit={onSubmit}>
       <div className="row mb-3">
         <label htmlFor="inputname" className="col-sm-2 col-form-label">
           Username
@@ -193,6 +195,9 @@ function Register() {
       <button type="submit" className="btn btn-primary me-4">
         Sign up
       </button>
+      <Button variant="outline-info" className="btn btn-outline-info" onClick={e => sIL(true)}>
+        Login
+      </Button>
     </form>
     
   );

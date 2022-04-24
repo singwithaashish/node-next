@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Container, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { user } from "../../api/api";
 import BlogCard from "../../Components/BlogCard";
 
 function Index() {
@@ -50,17 +51,17 @@ function Index() {
   return (
     <Container>
       <div className="top d-flex align-items-center py-3 border-bottom border-primary">
-        <Image
+        {/* <Image
           fluid
           rounded
           src="https://images.unsplash.com/photo-1621243547624-c40189fed5e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8aFNQNkp4OHc0WjR8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
           alt="user"
           style={{ width: "300px", height: "300px", objectFit: "cover" }}
-        />
+        /> */}
         <div className="right">
-          <h1 className="text-primary">Username</h1>
-          <h5 className="text-secondary">singwithaashish@gmail.com</h5>
-          <h6 className="text-muted">user since 2020</h6>
+          <h1 className="text-primary">{userr?.username}</h1>
+          <h5 className="text-secondary">{userr?.email}</h5>
+          <h6 className="text-muted">user since {userr?.createdAt.substring(0, 10)}</h6>
         </div>
       </div>
       <div className="bottom">
@@ -70,12 +71,7 @@ function Index() {
             ? blogs.map((post) => {
                 return (
                   <BlogCard
-                    title={post.title}
-                    description={post.description}
-                    imgUrl={post.image}
-                    author={post.author}
-                    time={post.createdAt}
-                    id={post._id}
+                    {...post}
                     key={post._id}
                   />
                 );

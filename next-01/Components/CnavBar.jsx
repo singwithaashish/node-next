@@ -1,3 +1,4 @@
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import React from "react";
 import {
@@ -14,6 +15,7 @@ import { setShowCreate } from "../state/stateSlice";
 
 function CnavBar() {
   const dispatch = useDispatch();
+  const {theme, setTheme} = useTheme();
   const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
@@ -22,7 +24,7 @@ function CnavBar() {
   return (
     <>
     <div style={{position: "fixed", width: "100vw", zIndex: 15}}>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg={theme} className={`bg-${theme}`} expand="lg" variant={theme}>
         <Container>
           <Navbar.Brand href="/">journalist</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -45,19 +47,26 @@ function CnavBar() {
             </Nav>
             <Form className="d-flex">
             <Button variant="outline-danger me-3" onClick={logout}>Logout</Button>
-              <FormControl
+              {/* <FormControl
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-info">Search</Button>
+              <Button variant="outline-info">Search</Button> */}
+              <div className="d-flex align-items-center">
+
+              {/* <label htmlFor="dark" className="me-2">{theme}</label> */}
+              {/* <input type="checkbox" id="dark" name="dark" value={theme === "dark" ? true : false} onChange={e => setTheme(e.target.value ? "dark" : "light")}/> */}
+              <h5>Theme : </h5>
+              <h5 className="ms-2 fw-normal text-decoration-underline" onClick={e => setTheme(theme === "light" ? "dark" : "light")} style={{cursor: "pointer"}}>{theme}</h5>
+              </div>
             </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </div>
-    <div style={{height: "4rem", width: "100vw"}}></div>
+    <div style={{height: "3.3rem", width: "100vw"}} className={`bg-${theme}`}></div>
     </>
   );
 }

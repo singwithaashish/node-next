@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAllBlogs } from "../state/stateSlice";
 import { Spinner } from "react-bootstrap";
 import getBlog from "../api/api";
+import { useTheme } from "next-themes";
 
 export default function Home({ creating, setCreating }) {
   const [user, setUser] = useState(null);
@@ -15,7 +16,8 @@ export default function Home({ creating, setCreating }) {
   const [loading, SetLoading] = useState(true);
   const dispatch = useDispatch();
   const apiUrl = useSelector((state) => state.all.apiUrl);
-
+  const { theme, setTheme } = useTheme()
+  
   useEffect(async () => {
     !loading && SetLoading(true);
     const token = localStorage.getItem("token");
