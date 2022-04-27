@@ -58,7 +58,7 @@ function CnavBar() {
 
               {/* <label htmlFor="dark" className="me-2">{theme}</label> */}
               {/* <input type="checkbox" id="dark" name="dark" value={theme === "dark" ? true : false} onChange={e => setTheme(e.target.value ? "dark" : "light")}/> */}
-              <h5>Theme : </h5>
+              {/* <h5>Theme : </h5> */}
               <h5 className="ms-2 fw-normal text-decoration-underline" onClick={e => setTheme(theme === "light" ? "dark" : "light")} style={{cursor: "pointer"}}>{theme}</h5>
               </div>
             </Form>

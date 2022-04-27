@@ -20,3 +20,12 @@ Content-Type: application/json
     "password": "test",
     "email": "hh@gm.com"
 }
+
+###
+
+GET https://stark-spire-21384.herokuapp.com/blogs HTTP/1.1
+
+{
+    "Content-Type": "application/json",
+    "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhoQGdtLmNvbSIsImlkIjoiNjI0YWE4NGYzMzQyODY2MzUxZjllMTdjIiwiaWF0IjoxNjUwNzk5MDgxfQ.VICSJXMpYKBKBvtdHkKvbiy0AF6ju8eoNzC1AMjMoz4"
+}
